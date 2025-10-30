@@ -2,6 +2,7 @@
 #define __PTX_IMAGE_H
 
 #include <stdint.h>
+#include <stdbool.h>
 #include <confuse.h>
 #include "list.h"
 
@@ -23,6 +24,8 @@ unsigned long long roundup(unsigned long long value, unsigned long long align);
 unsigned long long rounddown(unsigned long long value, unsigned long long align);
 unsigned long long min_ull(unsigned long long x, unsigned long long y);
 unsigned long long max_ull(unsigned long long x, unsigned long long y);
+bool is_pow2_ull(unsigned long long x);
+unsigned long long ceil_div_ull(unsigned long long x, unsigned long long y);
 
 void disable_rootpath(void);
 const char *imagepath(void);

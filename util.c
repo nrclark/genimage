@@ -15,6 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <stdbool.h>
+#include <limits.h>
 #include <confuse.h>
 #include <stdio.h>
 #include <string.h>
@@ -59,6 +61,28 @@ unsigned long long min_ull(unsigned long long x, unsigned long long y)
 unsigned long long max_ull(unsigned long long x, unsigned long long y)
 {
 	return x > y ? x : y;
+}
+
+bool is_pow2_ull(unsigned long long x)
+{
+	if (x == 0) {
+		return false;
+	}
+
+	return ((x & (x - 1)) == 0);
+}
+
+unsigned long long ceil_div_ull(unsigned long long x, unsigned long long y)
+{
+	if (y == 0) {
+		return ULLONG_MAX;
+	}
+
+	if (x == 0) {
+		return 0;
+	}
+
+	return 1 + (x - 1) / y;
 }
 
 static int loglevel(void)
