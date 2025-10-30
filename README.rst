@@ -484,6 +484,9 @@ Options:
 			up to the end of the last partition. This might make the file
 			bigger. This is necessary if the image will be processed by
 			such tools as libvirt, libguestfs or parted.
+:randomseed:	Image-specific random number generator seed. Can be used as an
+			addition or alternative to the global ``randomseed`` config parameter
+			for image-specific reproducible UUIDs.
 
 GPT partition flags
 ~~~~~~~~~~~~~~~~~~~

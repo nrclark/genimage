@@ -989,6 +989,13 @@ static int hdimage_setup(struct image *image, cfg_t *cfg)
 	hd->gpt_no_backup = cfg_getbool(cfg, "gpt-no-backup");
 	hd->fill = cfg_getbool(cfg, "fill");
 
+	char *seed = cfg_getstr(cfg, "randomseed");
+	if (!seed || (*seed == '\0')) {
+		random32_init();
+	} else {
+		random32_enable_prng(seed, strnlen(seed, 4096));
+	}
+
 	if (is_block_device(imageoutfile(image))) {
 		if (image->size) {
 			image_error(image, "image size must not be specified for a block device target\n");
@@ -1237,6 +1244,7 @@ static cfg_opt_t hdimage_opts[] = {
 	CFG_STR("gpt-location", NULL, CFGF_NONE),
 	CFG_BOOL("gpt-no-backup", cfg_false, CFGF_NONE),
 	CFG_BOOL("fill", cfg_false, CFGF_NONE),
+	CFG_STR("randomseed", NULL, CFGF_NONE),
 	CFG_END()
 };
 
